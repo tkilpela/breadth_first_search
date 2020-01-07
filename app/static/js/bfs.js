@@ -116,7 +116,6 @@ g.boundaries = walls;
 function breadth_first_search(grid, start, finish){
     var queue = [];
     queue.push(start);
-    var shortest_path = []
 
     var distance = {};
     distance[start] = 0;
@@ -124,14 +123,12 @@ function breadth_first_search(grid, start, finish){
         var current = queue.shift();
         for(next of grid.neighbors(current)){
             if(!(next in distance)){
-                shortest_path.push(next)
                 queue.push(next);
                 distance[next] = 1 + distance[current];
                 drawFoundTile(next[0], next[1], distance[next]);
                 if(next[0] == finish[0] && next[1] == finish[1]){
                     drawFinish(next[0], next[1]);
                     queue = [];
-                    return shortest_path;
                 }
             }
         }
@@ -140,5 +137,3 @@ function breadth_first_search(grid, start, finish){
 }
 
 var path = breadth_first_search(g, start, finish);
-
-console.log(path)
