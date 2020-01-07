@@ -25,31 +25,6 @@ var walls = [];
 
 var mousePosition = [];
 
-/*
-function heuristic(a, b){
-    start[0], finish[0] = a;
-    start[1], finish[1] = b;
-    return Math.abs(start[0] - finish[0]) + abs(start[1] - finish[1])
-}
-
-function A_star(start, finish, heuristic){
-    openSet = [start]
-
-    cameFrom = new Map();
-
-    gScore = new Map();
-    gScore.set(start, 0);
-
-    fScore = new Map();
-    fScore.set(start, heuristic(start))
-
-    while (openSet === undefined || openSet.length > 1){
-        var current = Math.min(...openSet);
-        if (current == finish) return reconstruct_path(cameFrom, current);
-    }
-}
-*/
-
 function drawCube(i, j, fill){
     ctx.beginPath();
     ctx.rect(i*40, j*40, 40, 40);
@@ -76,9 +51,6 @@ function drawFinish(x, y){
 
 function drawFoundTile(x, y, distance){
     ctx.beginPath();
-    //ctx.arc((x*40)+20, (y*40)+20, 2.5, 0, 2 * Math.PI);
-    //ctx.fillStyle = '#FF0000';
-    //ctx.fill();
     ctx.font = "15px Arial"
     ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
     ctx.fillText(distance, (x*40)+2.5, (y*40)+14.5);
@@ -156,7 +128,6 @@ function breadth_first_search(grid, start, finish){
                 queue.push(next);
                 distance[next] = 1 + distance[current];
                 drawFoundTile(next[0], next[1], distance[next]);
-                //console.log(distance);
                 if(next[0] == finish[0] && next[1] == finish[1]){
                     drawFinish(next[0], next[1]);
                     queue = [];

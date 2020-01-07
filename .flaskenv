@@ -1,1 +1,1 @@
-FLASK_APP=a-star.py
+FLASK_APP=bfs.py
